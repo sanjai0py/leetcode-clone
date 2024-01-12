@@ -1,13 +1,19 @@
-import express from "express"
-import * as cors from "cors"
+const cors = require("cors")
+const express = require("express")
+
+const authRoute  = require("./routes/auth.route.js")
 
 const app = express()
-const PORT = 8000
+const PORT = 3000
+
+app.use(cors())
+app.use(express.json())
 
 app.use("/", (req, res) => {
     res.send("this is the root route and it works")
 })
 
+app.use("/api/v1/auth", authRoute)
 
 app.listen(PORT, (req, res) => {
     console.log(`the server is listening on PORT ${PORT}`)
