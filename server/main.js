@@ -1,5 +1,6 @@
 const cors = require("cors")
 const express = require("express")
+require("dotenv").config()  
 
 const authRoute  = require("./routes/auth.route.js")
 
@@ -9,7 +10,7 @@ const PORT = 3000
 app.use(cors())
 app.use(express.json())
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.send("this is the root route and it works")
 })
 
