@@ -1,10 +1,12 @@
 const {User} = require("../sequelize");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ where: { username } });
     if (user) {
       return res.status(400).json({ msg: "User already exists" });
     }
@@ -47,7 +49,7 @@ const signin = async (req, res) => {
   const { email, password } = req.body;
   try {
     let user = await User.findOne({
-      email,
+      where: { email },
     });
     if (!user)
       return res.status(400).json({
