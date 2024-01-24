@@ -30,9 +30,9 @@ const signup = async (req, res) => {
 
     jwt.sign(
       payload,
-      "randomString",
+      process.env.JWT_SECRET,
       {
-        expiresIn: 10000,
+        expiresIn: process.env.JWT_EXPIRES_IN,
       },
       (err, token) => {
         if (err) throw err;
@@ -70,9 +70,9 @@ const signin = async (req, res) => {
 
     jwt.sign(
       payload,
-      "randomString",
+      process.env.JWT_SECRET,
       {
-        expiresIn: 3600,
+        expiresIn: process.env.JWT_EXPIRES_IN,
       },
       (err, token) => {
         if (err) throw err;

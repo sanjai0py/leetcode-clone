@@ -3,6 +3,7 @@ const express = require("express")
 require("dotenv").config()  
 
 const authRoute  = require("./routes/auth.route.js")
+const problemRoute = require("./routes/problem.route.js")
 
 const app = express()
 const PORT = 3000
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRoute)
+app.use("/api/v1/problem", problemRoute)
 
 app.listen(PORT, (req, res) => {
     console.log(`the server is listening on PORT ${PORT}`)
